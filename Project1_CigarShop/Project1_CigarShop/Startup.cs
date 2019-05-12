@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CigarShop.DataAccess.Entities;
+using CigarShop.DataAccess.Repositories;
+using CigarShop.Library.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,7 +35,12 @@ namespace Project1_CigarShop
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+/*
+            services.AddDbContext<CigarShopDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("RestaurantReviewsDB")));
 
+            services.AddScoped<ICigarRepository, CigarRepository>();
+*/
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

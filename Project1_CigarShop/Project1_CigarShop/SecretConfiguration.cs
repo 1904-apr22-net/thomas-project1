@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CigarShop.ConsoleUI
+namespace Project1_CigarShop
 {
     internal static class SecretConfiguration
     {
