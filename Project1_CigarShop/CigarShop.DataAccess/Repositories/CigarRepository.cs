@@ -1,21 +1,25 @@
 ﻿using CigarShop.DataAccess.Entities;
 using CigarShop.Library.Interfaces;
 using CigarShop.Library.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Cigar = CigarShop.DataAccess.Entities.Cigar;
+using Manufacturer = CigarShop.DataAccess.Entities.Manufacturer;
 
 namespace CigarShop.DataAccess.Repositories
 {
+
     public class CigarRepository : ICigarRepository
     {
-        private readonly CigarShopDbContext _dbContext;
+        private readonly Project0Context _dbContext;
         private readonly ILogger<CigarRepository> _logger;
 
-       public CigarRepository(CigarShopDbContext dbContext, ILogger<CigarRepository> logger)
+       public CigarRepository(Project0Context dbContext, ILogger<CigarRepository> logger)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -23,10 +27,10 @@ namespace CigarShop.DataAccess.Repositories
         public IEnumerable<Library.Models.Cigar> GetCigar(string search = null)
         {
             IQueryable<Cigar> items = _dbContext.Cigar
-                .Include(r => r.Review).AsNoTracking();
+                .Include(m => m.Manufacturer).AsNoTracking();
             if (search != null)
             {
-                items = items.Where(r => r.cigarName.Contains(search));
+                items = items.Where(m => m.cigarName.Contains(search));
             }
             return Mapper.Map(items);
         }
@@ -36,6 +40,7 @@ namespace CigarShop.DataAccess.Repositories
                 .AsNoTracking().First(m => m.Id == id);
             return Mapper.Map(Cigar);
         }
+        
         public void AddCigar(Library.Models.Cigar cigar)
         {
             if (cigar.Id != 0)
@@ -87,6 +92,12 @@ namespace CigarShop.DataAccess.Repositories
             }
         }
         public void Dispose() => Dispose(true);
+
+        public IEnumerable<Library.Models.Cigar> GetCigars(string search = null)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
+
 }

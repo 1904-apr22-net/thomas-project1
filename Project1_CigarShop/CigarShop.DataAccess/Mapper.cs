@@ -8,25 +8,25 @@ namespace CigarShop.DataAccess
 {
     public static class Mapper
     {
-        public static Library.Models.Cigar Map(Entities.Cigar cigar) => new Library.Models.Cigar
+        public static Library.Models.Manufacturer Map(Entities.Manufacturer manufacturer) => new Library.Models.Manufacturer
         {
-            Id = cigar.Id,
-            cigarName = cigar.CigarName,
-            Cigar = Map(Manufacturer.ManufacturerName).ToList()
+            Id = manufacturer.Id,
+            ManufacturerName = manufacturer.ManufacturerName,
+            Cigars = Map(Manufacturer.Cigar).ToList()
         };
 
-        public static Entities.Cigar Map(Library.Models.Cigar cigar) => new Entities.Cigar
+        public static Entities.Manufacturer Map(Library.Models.Manufacturer manufacturer) => new Entities.Manufacturer
         {
-            Id = cigar.Id,
-            Name = cigar.cigarName,
-            Cigar = Map(Manufacturer.ManufacturerName).ToList()
+            Id = manufacturer.Id,
+            ManufacturerName = manufacturer.ManufacturerName,
+            Cigars = Map(Manufacturer.Cigar).ToList()
         };
 
         public static Library.Models.Manufacturer Map(Entities.Manufacturer manufacturer) => new Library.Models.Manufacturer
         {
             Id = manufacturer.Id,
             ManufacturerName = manufacturer.ManufacturerName,
-            Cigar = Map(Manufacturer.ManufacturerName).ToList()
+            Cigars = Map(Manufacturer.Cigar).ToList()
         };
 
 
@@ -42,4 +42,5 @@ namespace CigarShop.DataAccess
         public static IEnumerable<Entities.Manufacturer> Map(IEnumerable<Library.Models.Manufacturer> manufacturer) =>
             manufacturer.Select(Map);
     }
+
 }

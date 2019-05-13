@@ -18,8 +18,4 @@
     <ProjectReference Include="..\CigarShop.Library\CigarShop.Library.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>

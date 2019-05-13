@@ -24,5 +24,8 @@ namespace CigarShop.Library.Models
         }
         public string Manufacturers { get; set; }
 
+        public string BodyChar { get; set; }
+
+        public double Price { get; set; }
     }
 }
