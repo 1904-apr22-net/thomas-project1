@@ -16,9 +16,6 @@ namespace CigarShop.Library.Interfaces
         void DeleteCigar(int cigarId);
 
         void UpdateCigar(Cigar cigar);
-
-
-
-        
+        Manufacturer GetManufacturerById(int id);
     }
 }

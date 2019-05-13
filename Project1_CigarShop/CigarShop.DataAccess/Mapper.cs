@@ -11,22 +11,29 @@ namespace CigarShop.DataAccess
         public static Library.Models.Manufacturer Map(Entities.Manufacturer manufacturer) => new Library.Models.Manufacturer
         {
             Id = manufacturer.Id,
-            ManufacturerName = manufacturer.ManufacturerName,
-            Cigars = Map(Manufacturer.Cigar).ToList()
+            ManufacturerName = manufacturer.Name,
+            Cigars = Map(manufacturer.Cigar).ToList()
         };
 
         public static Entities.Manufacturer Map(Library.Models.Manufacturer manufacturer) => new Entities.Manufacturer
         {
             Id = manufacturer.Id,
-            ManufacturerName = manufacturer.ManufacturerName,
-            Cigars = Map(Manufacturer.Cigar).ToList()
+            Name = manufacturer.ManufacturerName,
+            Cigar = Map(manufacturer.Cigars).ToList()
         };
 
-        public static Library.Models.Manufacturer Map(Entities.Manufacturer manufacturer) => new Library.Models.Manufacturer
+        public static Library.Models.Cigar Map(Entities.Cigar cigar) => new Library.Models.Cigar
         {
-            Id = manufacturer.Id,
-            ManufacturerName = manufacturer.ManufacturerName,
-            Cigars = Map(Manufacturer.Cigar).ToList()
+            Id = cigar.Id,
+            CigarName = cigar.Name,
+           // Id = Map(cigar.ManufacturerId).ToList()
+        };
+
+        public static Entities.Cigar Map(Library.Models.Cigar cigar) => new Entities.Cigar
+        {
+            Id = cigar.Id,
+            Name = cigar.CigarName,
+          //  Manufacturer = Map(cigar.Id).ToList()
         };
 
 

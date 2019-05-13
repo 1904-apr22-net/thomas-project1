@@ -30,7 +30,7 @@ namespace CigarShop.DataAccess.Repositories
                 .Include(m => m.Manufacturer).AsNoTracking();
             if (search != null)
             {
-                items = items.Where(m => m.cigarName.Contains(search));
+                items = items.Where(m => m.Name.Contains(search));
             }
             return Mapper.Map(items);
         }
@@ -38,7 +38,7 @@ namespace CigarShop.DataAccess.Repositories
         {
             Cigar cigar = _dbContext.Cigar.Include(m => m.Manufacturer)
                 .AsNoTracking().First(m => m.Id == id);
-            return Mapper.Map(Cigar);
+            return Mapper.Map(cigar);
         }
         
         public void AddCigar(Library.Models.Cigar cigar)
@@ -73,7 +73,7 @@ namespace CigarShop.DataAccess.Repositories
         {
             Manufacturer manufacturer = _dbContext.Manufacturer.AsNoTracking()
                 .First(m => m.Id == manufacturerId);
-            return manufacturer.CigarId;
+            return int.Parse(manufacturer.Name);
         }
 
         #region IDisposable Support

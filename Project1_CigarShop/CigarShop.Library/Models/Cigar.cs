@@ -8,8 +8,9 @@ namespace CigarShop.Library.Models
     {
         private string _cigarname;
         public int Id { get; set; }
+        public int ManufacturerId { get; set; }
 
-        public string cigarName
+        public string CigarName
         {
             get => _cigarname;
             set
@@ -22,8 +23,7 @@ namespace CigarShop.Library.Models
             }
 
         }
-        public string Manufacturers { get; set; }
-
+ 
         public string BodyChar { get; set; }
 
         public double Price { get; set; }
