@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Cigar\" />
-    <Folder Include="Views\Manufacturer\" />
   </ItemGroup>
 
 </Project>

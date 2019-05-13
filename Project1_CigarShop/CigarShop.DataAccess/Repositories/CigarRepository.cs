@@ -97,6 +97,11 @@ namespace CigarShop.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Library.Models.Manufacturer GetManufacturerById(int id)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 
