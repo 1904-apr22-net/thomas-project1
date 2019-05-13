@@ -20,6 +20,9 @@ namespace CigarShop.Library.Models
                  }
              _cigarname = value;
             }
+
         }
+        public string Manufacturers { get; set; }
+
     }
 }

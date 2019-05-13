@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using CigarShop.Library.Models;
 
 namespace CigarShop.DataAccess
 {
@@ -10,23 +11,22 @@ namespace CigarShop.DataAccess
         public static Library.Models.Cigar Map(Entities.Cigar cigar) => new Library.Models.Cigar
         {
             Id = cigar.Id,
-            cigarName = cigar.Name,
-            Manufacturer = Map(cigar.Manufacturer).ToList()
+            cigarName = cigar.CigarName,
+            Cigar = Map(Manufacturer.ManufacturerName).ToList()
         };
 
         public static Entities.Cigar Map(Library.Models.Cigar cigar) => new Entities.Cigar
         {
             Id = cigar.Id,
             Name = cigar.cigarName,
-            Cigar = Map(cigar.Manufacturer).ToList()
+            Cigar = Map(Manufacturer.ManufacturerName).ToList()
         };
 
         public static Library.Models.Manufacturer Map(Entities.Manufacturer manufacturer) => new Library.Models.Manufacturer
         {
             Id = manufacturer.Id,
-            ReviewerName = manufacturer.ReviewerName,
-            Score = manufacturer.Score,
-            Text = manufacturer.Text
+            ManufacturerName = manufacturer.ManufacturerName,
+            Cigar = Map(Manufacturer.ManufacturerName).ToList()
         };
 
 

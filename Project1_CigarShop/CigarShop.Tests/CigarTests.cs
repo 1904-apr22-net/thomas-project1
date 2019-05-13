@@ -3,7 +3,7 @@ using Xunit;
 
 namespace CigarShop.Tests
 {
-    public class UnitTest1
+    public class CigarTests
     {
         [Fact]
         public void Test1()

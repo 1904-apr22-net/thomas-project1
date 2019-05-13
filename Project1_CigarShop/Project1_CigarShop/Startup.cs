@@ -35,12 +35,12 @@ namespace Project1_CigarShop
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-/*
+
             services.AddDbContext<CigarShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("RestaurantReviewsDB")));
 
             services.AddScoped<ICigarRepository, CigarRepository>();
-*/
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
