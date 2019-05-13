@@ -15,7 +15,7 @@ namespace Project1_CigarShop.Controllers
         public ManufacturerController(ICigarRepository repo) =>
             Repo = repo ?? throw new ArgumentNullException(nameof(repo));
 
-
+/*
         public ActionResult Details(int id)
         {
             Manufacturer manufacturer = Repo.GetManufacturerById(id);
@@ -31,5 +31,6 @@ namespace Project1_CigarShop.Controllers
             };
             return View(viewModel);
         }
+        */
     }
 }
