@@ -117,6 +117,16 @@ namespace CigarShop.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddManufacturer(Library.Models.Manufacturer manufacturer)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 

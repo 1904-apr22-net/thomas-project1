@@ -10,11 +10,16 @@ namespace Project1_CigarShop.Models
     {
         [Display(Name = "ID")]
         public int Id { get; internal set; }
+
         [Required]
         [Display(Name = "Cigar Name")]
         public string Manufacturer { get; internal set; }
 
         [Display(Name = "Manufacturer's ID")]
         public int ManufacturerId { get; set; }
+
+        [Required]
+        [Display]
+        public string CigarName { get; internal set; }
     }
 }

@@ -7,6 +7,7 @@ using CigarShop.Library.Interfaces;
 using CigarShop.Library.Models;
 using Microsoft.AspNetCore.Mvc;
 using Project1_CigarShop.Models;
+using Manufacturer = CigarShop.Library.Models.Manufacturer;
 
 namespace Project1_CigarShop.Controllers
 {
@@ -20,12 +21,13 @@ namespace Project1_CigarShop.Controllers
         public ActionResult Index([FromQuery] string search = "")
         {
             IEnumerable<CigarShop.Library.Models.Manufacturer> manufacturers = Repo.GetManufacturers(search);
-            IEnumerable<ManufacturerViewModel> viewModels = manufacturers.Select(x => ManufacturerViewModel
+            IEnumerable<ManufacturerViewModel> viewModels = manufacturers.Select(x => new ManufacturerViewModel
             {
                 Id = x.Id,
-                Name = x.Name,
-                CigarShop.Library.Models.Cigar = x.Cigars.Select(y => new CigarViewModel())
+                Name = x.CigarName,
+                Cigars = x.Cigars.Select(y => new CigarViewModel())
             });
+            return View(viewModels);
         }
         public ActionResult Details(int id)
         {
@@ -42,6 +44,35 @@ namespace Project1_CigarShop.Controllers
             };
             return View(viewModel);
         }
+
+        public ActionResult Create() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind("Name")]ManufacturerViewModel viewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var manufacturer = new Manufacturer
+                    {
+                        ManufacturerName = viewModel.Name
+                    };
+                    Repo.AddManufacturer(manufacturer);
+                    Repo.Save();
+
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(viewModel);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         
+
     }
 }

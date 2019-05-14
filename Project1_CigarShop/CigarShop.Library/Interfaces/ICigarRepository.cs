@@ -19,5 +19,7 @@ namespace CigarShop.Library.Interfaces
         Manufacturer GetManufacturerById(int id);
         object ManufacturerIdFromCigarId(int id);
         IEnumerable<Manufacturer> GetManufacturers(object serach);
+        void Save();
+        void AddManufacturer(Manufacturer manufacturer);
     }
 }

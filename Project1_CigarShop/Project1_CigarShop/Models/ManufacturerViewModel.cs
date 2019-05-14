@@ -10,8 +10,10 @@ namespace Project1_CigarShop.Models
     {
         [Display(Name = "ID")]
         public int Id { get; internal set; }
+
         [Required]
         public string Name { get; internal set; }
-        public object Cigars { get; internal set; }
+
+        public IEnumerable<CigarViewModel> Cigars { get; internal set; }
     }
 }
