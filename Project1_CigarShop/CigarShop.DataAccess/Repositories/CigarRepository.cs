@@ -24,6 +24,11 @@ namespace CigarShop.DataAccess.Repositories
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        public CigarRepository()
+        {
+        }
+
         public IEnumerable<Library.Models.Cigar> GetCigar(string search = null)
         {
             IQueryable<Cigar> items = _dbContext.Cigar
@@ -99,6 +104,16 @@ namespace CigarShop.DataAccess.Repositories
         }
 
         public Library.Models.Manufacturer GetManufacturerById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ManufacturerIdFromCigarId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Library.Models.Manufacturer> GetManufacturers(object serach)
         {
             throw new NotImplementedException();
         }

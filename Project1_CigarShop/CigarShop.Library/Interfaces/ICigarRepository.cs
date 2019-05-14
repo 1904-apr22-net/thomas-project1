@@ -17,5 +17,7 @@ namespace CigarShop.Library.Interfaces
 
         void UpdateCigar(Cigar cigar);
         Manufacturer GetManufacturerById(int id);
+        object ManufacturerIdFromCigarId(int id);
+        IEnumerable<Manufacturer> GetManufacturers(object serach);
     }
 }

@@ -26,14 +26,14 @@ namespace CigarShop.DataAccess
         {
             Id = cigar.Id,
             CigarName = cigar.Name,
-           // Id = Map(cigar.ManufacturerId).ToList()
+           Id = Map(cigar.ManufacturerId).ToList()
         };
 
         public static Entities.Cigar Map(Library.Models.Cigar cigar) => new Entities.Cigar
         {
             Id = cigar.Id,
             Name = cigar.CigarName,
-          //  Manufacturer = Map(cigar.Id).ToList()
+          Manufacturer = Map(cigar.Id).ToList()
         };
 
 
