@@ -17,9 +17,8 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) $(solutionPath)
   displayName: 'dotnet build $(buildConfiguration) $(solutionPath)'
 
-- task: DotNetCoreCLI@2
+- task: AzureRmWebAppDeployment@3
   inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
+    azureSubscription: '<Azure service connection>'
+    WebAppName: '<Name of web app>'
+    Package: $(System.ArtifactsDirectory)/**/*.zip
