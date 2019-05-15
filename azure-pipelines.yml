@@ -17,8 +17,4 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) $(solutionPath)
   displayName: 'dotnet build $(buildConfiguration) $(solutionPath)'
 
-- task: AzureRmWebAppDeployment@3
-  inputs:
-    azureSubscription: 'Free Trial'
-    WebAppName: 'Project1_CigarShop'
-    Package: $(System.ArtifactsDirectory)/**/*.zip
+- task: PublishBuildArtifacts@1
