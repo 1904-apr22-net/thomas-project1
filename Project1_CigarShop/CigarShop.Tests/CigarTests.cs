@@ -8,7 +8,6 @@ namespace CigarShop.Tests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }
