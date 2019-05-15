@@ -19,6 +19,6 @@ steps:
 
 - task: AzureRmWebAppDeployment@3
   inputs:
-    azureSubscription: '<Azure service connection>'
-    WebAppName: '<Name of web app>'
+    azureSubscription: 'Free Trial'
+    WebAppName: 'Project1_CigarShop'
     Package: $(System.ArtifactsDirectory)/**/*.zip
