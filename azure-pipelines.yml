@@ -37,5 +37,5 @@ steps:
 - task: SonarCloudAnalyze@1
   inputs: {}
 
-extraProperties:  
-sonar.cs.opencover.reportsPath="$(Build.ArtifactStagingDirectory)/coverage/*"
+extraProperties:
+sonar.cs.opencover.reportsPath="$(Build.ArtifactStagingDirectory)/coverage/*":
