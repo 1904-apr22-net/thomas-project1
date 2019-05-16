@@ -17,12 +17,15 @@ steps:
 
 - task: SonarCloudPrepare@1
   inputs:
-    SonarCloud: 'sonarcloud-Thomas Llewellyn'
-    organization: 'TLlewell-github'
+    SonarCloud: 'tllewellProject1'
+    organization: 'tllewell-github'
     scannerMode: 'MSBuild'
-    projectKey: 'TLlewellProject1'
+    projectKey: 'TLewellProject1'
+    projectName: 'Project1_CigarShop'
     extraProperties: |
       sonar.cs.opencover.reportsPaths="$(Build.ArtifactStagingDirectory)/coverage/*"
+
+ 
 
 - script: dotnet build --configuration $(buildConfiguration)
   workingDirectory: $(solutionPath)
