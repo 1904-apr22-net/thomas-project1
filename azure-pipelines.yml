@@ -15,6 +15,9 @@ variables:
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration) $(solutionPath) --logger trx --collect "Code coverage"
+    /p:CollectCoverage=true 
+    /p:CoverletOutputFormat=opencover 
+    /p:Exclude="[xunit*]*"
   displayName: 'dotnet build $(buildConfiguration) $(solutionPath)'
 
 - task: PublishTestResults@2
@@ -36,4 +39,3 @@ steps:
 
 extraProperties:  
 sonar.cs.opencover.reportsPath="$(Build.ArtifactStagingDirectory)/coverage/*"
-
