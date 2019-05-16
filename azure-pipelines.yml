@@ -14,8 +14,13 @@ variables:
   solutionPath: 'Project1_CigarShop'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration) $(solutionPath)
+- script: dotnet build --configuration $(buildConfiguration) $(solutionPath) --logger trx --collect "Code coverage"
   displayName: 'dotnet build $(buildConfiguration) $(solutionPath)'
+
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -23,3 +28,4 @@ steps:
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+
