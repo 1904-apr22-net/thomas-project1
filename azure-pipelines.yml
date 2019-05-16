@@ -17,7 +17,7 @@ steps:
 
 - task: SonarCloudPrepare@1
   inputs:
-    SonarCloud: 'sonarcloud-Thomas Llewellyn'
+    SonarCloud: 'sonarcloud-TLlewell'
     organization: 'tllewell-github'
     scannerMode: 'MSBuild'
     projectKey: 'TLlewellProject1'
