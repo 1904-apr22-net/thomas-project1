@@ -14,28 +14,51 @@ variables:
   solutionPath: 'Project1_CigarShop'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration) $(solutionPath) --logger trx --collect "Code coverage"
-    /p:CollectCoverage=true 
-    /p:CoverletOutputFormat=opencover 
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud-Thomas Llewellyn'
+    organization: 'tllewell-github'
+    scannerMode: 'MSBuild'
+    projectKey: 'TLlewellProject1'
+    extraProperties: |
+      sonar.cs.opencover.reportsPaths="$(Build.ArtifactStagingDirectory)/coverage/*"
+
+- script: dotnet build --configuration $(buildConfiguration)
+  workingDirectory: $(solutionPath)
+  displayName: 'dotnet build $(buildConfiguration)'
+
+
+- script: dotnet test
+    --configuration $(buildConfiguration)
+    /p:CollectCoverage=true
+    /p:CoverletOutputFormat=opencover
+    /p:CoverletOutput='$(Build.ArtifactStagingDirectory)/coverage/'
     /p:Exclude="[xunit*]*"
-  displayName: 'dotnet build $(buildConfiguration) $(solutionPath)'
-
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: publish
-    publishWebProjects: True
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
+  workingDirectory: $(solutionPath)
+  displayName: 'dotnet test $(buildConfiguration)'
 
 - task: SonarCloudAnalyze@1
   inputs: {}
 
-extraProperties:
-sonar.cs.opencover.reportsPath="$(Build.ArtifactStagingDirectory)/coverage/*":
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '60'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: $(solutionPath)/RestaurantReviews.WebUI/*.csproj
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial (9a605f76-7edb-4db7-b774-cb256b2d8b9a)'
+    appType: 'webApp'
+    WebAppName: '1904-llewellyn-cigars'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
