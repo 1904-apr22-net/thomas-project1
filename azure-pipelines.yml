@@ -63,4 +63,4 @@ steps:
     azureSubscription: 'Free Trial (9a605f76-7edb-4db7-b774-cb256b2d8b9a)'
     appType: 'webApp'
     WebAppName: '1904-llewellyn-cigars'
-    packageForLinux: '''$(Build.ArtifactStagingDirectory)/**/*.zip'''
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
