@@ -14,7 +14,7 @@ variables:
   solutionPath: 'Project1_CigarShop'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration) $(solutionPath) --logger trx --collect "Code coverage"
+- script: dotnet build --configuration $(buildConfiguration) $(solutionPath) --logger trx 
   displayName: 'dotnet build $(buildConfiguration) $(solutionPath)'
 
 - task: PublishTestResults@2
