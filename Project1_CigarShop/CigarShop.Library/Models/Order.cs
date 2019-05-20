@@ -12,6 +12,20 @@ namespace CigarShop.Library.Models
         public List<Cigar> Cigars { get; set; } = new List<Cigar>();
         public int Price { get; set; }
         public int StoreId { get; set; }
-        public int CusomerId { get; set; } 
+        public int CusomerId { get; set; }
+        public int QuantityDesired { get; set; }
+
+        
+
+        if (StoreID.invintory[cigarId] >= QuantityDesired)
+            {
+            StoreID.invintory[cigarId] -= QuantityDesired;
+            // return message confirming order
+            }
+     else
+        {
+    //return message not enough in stock
+        }
+
     }
 }
